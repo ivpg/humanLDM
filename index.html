@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="Controlling Human Shape and Pose in Text-to-Image Diffusion Models via Domain Adaptation.">
+  <meta name="keywords" content="Text-to-image diffusion models, human shape control, pose control, domain adaptation, SMPL, ControlNet, synthetic data, human animation">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Controlling Human Shape and Pose in Text-to-Image Diffusion Models via Domain Adaptation</title>
+
+<!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XHJQ1V9HEG"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-XHJQ1V9HEG');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <!-- <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css"> -->
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <!-- <link rel="icon" href="./static/images/favicon.svg"> -->
+  <link rel="apple-touch-icon" sizes="180x180" href="./static/images/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="./static/images/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="./static/images/favicon/favicon-16x16.png">
+  <link rel="manifest" type="data" href="./static/images/favicon/site.webmanifest">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <!-- <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script> -->
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+  <div class="navbar-menu">
+    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+<!-- 
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          More Research
+        </a>
+        <div class="navbar-dropdown">
+          <a class="navbar-item" href="https://hypernerf.github.io">
+            HyperNeRF
+          </a>
+          <a class="navbar-item" href="https://nerfies.github.io">
+            Nerfies
+          </a>
+          <a class="navbar-item" href="https://latentfusion.github.io">
+            LatentFusion
+          </a>
+          <a class="navbar-item" href="https://photoshape.github.io">
+            PhotoShape
+          </a>
+        </div>
+      </div>
+    </div> -->
+
+  </div>
+</nav>
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">Controlling Human Shape and Pose in Text-to-Image Diffusion Models via Domain Adaptation</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              Benito Buchheim,
+            </span>
+            <span class="author-block">
+              Max Reimann,
+            </span>
+            <span class="author-block">
+              Jürgen Döllner
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">University of Potsdam, Digital Engineering Faculty, Potsdam, Germany</span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">In WACV 2025</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="#" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a class="external-link button is-normal is-rounded is-dark" disabled>
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code (Coming Soon)</span>
+                  </a>
+              </span>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <figure>
+      <video id="teaser" autoplay muted loop playsinline height="100%">
+        <source src="static/images/WISE_Whitebox_Image_Stylization_by_Example_based_Learning_teaser.mp4"
+                type="video/mp4" alt="Teaser Video">
+      </video>
+      <h2 class="subtitle has-text-centered">
+        <figcaption>Teaser caption goes here.</figcaption>
+      </h2>
+    </figure>
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            We present a methodology for conditional control of human shape and pose in pretrained text-to-image diffusion models using a 3D human parametric model (SMPL).
+            Fine-tuning these diffusion models to adhere to new conditions requires large datasets and high-quality annotations, which can be more cost-effectively acquired through synthetic data generation rather than real-world data. However, the domain gap and low scene diversity of synthetic data can compromise the pretrained model's visual fidelity. We propose a domain-adaptation technique that maintains image quality by isolating synthetically trained conditional information in the classifier-free guidance vector and composing it with another control network to adapt the generated images to the input domain.
+            To achieve SMPL-control, we fine-tune a ControlNet-based architecture on the synthetic SURREAL dataset of rendered humans and apply our domain adaptation at generation time.
+            Experiments demonstrate that our model achieves greater shape and pose diversity than the 2D pose-based ControlNet, while maintaining the visual fidelity and improving stability, proving its usefulness for downstream tasks such as human animation.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+  </div>
+</section>
+
+<!-- Optional: Remove the following section if acknowledgements are not needed -->
+<!--
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h3 class="title is-3">Acknowledgements</h3>
+        <p>
+          [Your acknowledgements here.]
+        </p>
+        <br/>
+        <div class="columns is-variable is-flex is-vcentered is-centered is-8">
+          <div class="column is-3">
+            <figure class="image is-5by3">
+              <a href="https://hpi.de/"><img src="./static/images/logos/hpi_logo.png" alt="Hasso-Plattner-Institut"  ></a>
+            </figure>
+          </div>
+          <div class="column is-3">
+            <figure class="image is-16by9">
+              <a href="https://www.bmbf.de/"><img src="./static/images/logos/bmbf_logo.png" alt="BMBF: Bundesministerium für Bildung und Forschung"  ></a>
+            </figure>
+          </div>
+          <div class="column is-3 has-text-centered">
+            <figure class="image is-128x128 is-inline-block">
+              <a href="https://www.uni-potsdam.de/"><img src="./static/images/logos/uni_potsdam_logo.png" alt="Universität Potsdam" ></a>
+             </figure>
+          </div>
+        </div>
+      </div>
+    </div>  
+  </div>
+</section>
+-->
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@inproceedings{buchheim2025controlling,
+  author    = {Buchheim, Benito and Reimann, Max and D{\"o}llner, J{\"u}rgen},
+  title     = {Controlling Human Shape and Pose in Text-to-Image Diffusion Models via Domain Adaptation},
+  booktitle = {Proceedings of the IEEE/CVF Winter Conference on Applications of Computer Vision (WACV)},
+  year      = {2025},
+}</code></pre>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            Website template adapted from <a href="https://nerfies.github.io">nerfies.github.io</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
