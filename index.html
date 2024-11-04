@@ -143,7 +143,7 @@
   <div class="container is-max-desktop">
     <div class="hero-body">
       <figure>
-      <img src="static/images/teaser_v001.jpg" alt="teaser"/>
+      <img src="static/images/teaser_v001.jpg" alt="teaser" style="width: 95%;"/>
       <h2 class="subtitle has-text-centered">
         <figcaption>Our approach allows 3d parametric control over human pose and shape in LDMs using SMPL meshes.</figcaption>
       </h2>
@@ -181,9 +181,7 @@
       <div class="column is-full-width">
         <figure>
           <img src="static/images/approach.jpeg" alt="approach" width="95%"/>
-          <h2 class="subtitle has-text-centered">
             <figcaption>A pretrained ControlNet \( \epsilon_{SD} \) conditioned on 2d poses (a) can generate pose-guided images in the data domain \( p_{SD} \) (blue) of the Stable Diffusion model. To enable SMPL-based human shape and 3d-pose control, the model is fine-tuned on the synthetic SURREAL dataset (b), shifting the model outputs into the synthetic data domain \( p_{Syn} \) (orange), which degrades its visual fidelity and realism. Our approach proposes classifier-free guidance composition with a secondary original-domain trained ControlNet (c) to adapt the visual output domain to the original data domain while retaining shape and pose control.</figcaption>
-          </h2>
         </figure>
       </div>
     </div>
