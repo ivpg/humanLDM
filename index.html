@@ -34,6 +34,10 @@
   <link rel="icon" type="image/png" sizes="16x16" href="./static/images/favicon/favicon-16x16.png">
   <link rel="manifest" type="data" href="./static/images/favicon/site.webmanifest">
 
+  <script id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script defer src="./static/js/fontawesome.all.min.js"></script>
   <!-- <script src="./static/js/bulma-carousel.min.js"></script>
@@ -83,7 +87,9 @@
     <div class="container is-max-desktop">
       <div class="columns is-centered">
         <div class="column has-text-centered">
-          <h1 class="title is-1 publication-title">Controlling Human Shape and Pose in Text-to-Image Diffusion Models via Domain Adaptation</h1>
+          <h1 class="title is-1 publication-title">Controlling Human Shape and Pose 
+            <br/>  in Text-to-Image Diffusion Models 
+            <br/> via Domain Adaptation</h1>
           <div class="is-size-5 publication-authors">
             <span class="author-block">
               Benito Buchheim,
@@ -101,7 +107,7 @@
           </div>
 
           <div class="is-size-5 publication-authors">
-            <span class="author-block">In WACV 2025</span>
+            <span class="author-block">In WACV 2025 (to appear)</span>
           </div>
 
           <div class="column has-text-centered">
@@ -137,12 +143,9 @@
   <div class="container is-max-desktop">
     <div class="hero-body">
       <figure>
-      <video id="teaser" autoplay muted loop playsinline height="100%">
-        <source src="static/images/WISE_Whitebox_Image_Stylization_by_Example_based_Learning_teaser.mp4"
-                type="video/mp4" alt="Teaser Video">
-      </video>
+      <img src="static/images/teaser_v001.jpg" alt="teaser"/>
       <h2 class="subtitle has-text-centered">
-        <figcaption>Teaser caption goes here.</figcaption>
+        <figcaption>Our approach allows 3d parametric control over human pose and shape in LDMs using SMPL meshes.</figcaption>
       </h2>
     </figure>
     </div>
@@ -170,15 +173,60 @@
   </div>
 </section>
 
-<!-- Optional: Remove the following section if acknowledgements are not needed -->
-<!--
+<section class="section"></section>
+  <div class="container is-max-desktop">
+    <h2 class="title is-3">Approach</h2>
+
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <figure>
+          <img src="static/images/approach.jpeg" alt="approach" width="95%"/>
+          <h2 class="subtitle has-text-centered">
+            <figcaption>A pretrained ControlNet \( \epsilon_{SD} \) conditioned on 2d poses (a) can generate pose-guided images in the data domain \( p_{SD} \) (blue) of the Stable Diffusion model. To enable SMPL-based human shape and 3d-pose control, the model is fine-tuned on the synthetic SURREAL dataset (b), shifting the model outputs into the synthetic data domain \( p_{Syn} \) (orange), which degrades its visual fidelity and realism. Our approach proposes classifier-free guidance composition with a secondary original-domain trained ControlNet (c) to adapt the visual output domain to the original data domain while retaining shape and pose control.</figcaption>
+          </h2>
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3">Examples</h2>
+
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <figure>
+          <img src="static/images/shapes.png" alt="shape  control" width="95%"/>
+          <h2 class="subtitle has-text-centered">
+            <figcaption>Sampling different shape parameters of the SMPL model. <br/> Changes in body proportions are reflected in the generated images.</figcaption>
+          </h2>
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@inproceedings{buchheim2025controlling,
+  author    = {Buchheim, Benito and Reimann, Max and D{\"o}llner, J{\"u}rgen},
+  title     = {Controlling Human Shape and Pose in Text-to-Image Diffusion Models via Domain Adaptation},
+  booktitle = {Proceedings of the IEEE/CVF Winter Conference on Applications of Computer Vision (WACV)},
+  year      = {2025},
+}</code></pre>
+  </div>
+</section>
+
+
 <section class="section">
   <div class="container is-max-desktop">
     <div class="columns is-centered">
       <div class="column is-full-width">
         <h3 class="title is-3">Acknowledgements</h3>
         <p>
-          [Your acknowledgements here.]
+          Our work "Controlling Human Shape and Pose in Text-to-Image Diffusion Models via Domain Adaptation" was partially funded by the German Federal Ministry of Education and Research (BMBF) through grants 01IS15041 – “mdViPro” and 01IS19006 – “KI-Labor ITSE”.
         </p>
         <br/>
         <div class="columns is-variable is-flex is-vcentered is-centered is-8">
@@ -202,19 +250,8 @@
     </div>  
   </div>
 </section>
--->
 
-<section class="section" id="BibTeX">
-  <div class="container is-max-desktop content">
-    <h2 class="title">BibTeX</h2>
-    <pre><code>@inproceedings{buchheim2025controlling,
-  author    = {Buchheim, Benito and Reimann, Max and D{\"o}llner, J{\"u}rgen},
-  title     = {Controlling Human Shape and Pose in Text-to-Image Diffusion Models via Domain Adaptation},
-  booktitle = {Proceedings of the IEEE/CVF Winter Conference on Applications of Computer Vision (WACV)},
-  year      = {2025},
-}</code></pre>
-  </div>
-</section>
+
 
 <footer class="footer">
   <div class="container">
